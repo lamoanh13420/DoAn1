@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="~/LayoutMain/css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="~/LayoutMain/css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="~/LayoutMain/css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="~/LayoutMain/images/Logo.jpg" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="~/LayoutMain/css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- owl stylesheets -->
+    <link rel="stylesheet" href="~/LayoutMain/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+</head>
+<body>
+    <!-- header section start -->
+    <div class="header_section" style="background-color: #69c934;">
+        <div class="container" style="height: 20px;background-color:#69c934;">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <marquee direction="up" style="width: 80px; font-size: 20px;">
+                        @Html.ActionLink("TRAVEL", "Index", "Home", new { @class = "navbar-brand" })
+                    </marquee>
+                </div>
+                <div class="col-sm-6">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:20px">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <a class="nav-item nav-link" href="/Home/Index">TRANG CHỦ</a>
+                                <a class="nav-item nav-link" href="/Home/Index">TOUR DU LỊCH</a>
+                                <a class="nav-item nav-link" href="/XemTinTuc/Index">TIN TỨC</a>
+                                <a class="nav-item nav-link" href="#">LIÊN HỆ</a>
+                                
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="dangkydangnhap">
+                    @Html.Action("GioHangPartial","GioHang")
+                    @if (Session["Email"] != null)
+                    {
+                        @Session["Email"]
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> @Html.ActionLink("Đăng Xuất", "DangXuat", "ThanhVien")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Đăng Ký", "DangKy", "ThanhVien")
+                        @Html.ActionLink("Đăng Nhập", "DangNhap", "ThanhVien")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header section end -->
+    <!-- banner section start -->
+    <div class="layout_padding banner_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="banner_taital">Cuộc Hành Trình Không Bao Giờ Dừng Lại</h2>
+                    <h3 class="banner-h3">Hãy Đến Với Chúng Tôi, Chúng Tôi Sẽ Đưa Bạn Đi Khám Phá Mọi Nơi Bạn Muốn</h3>
+                    <div class="banner_bt">
+                        <button class="read_bt">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner section end -->
+    <!-- section PROMOTED start -->
+    <div class=" layout_padding promoted_sectipon">
+        @RenderBody()
+    </div>
+    <!-- section PROMOTED end -->
+    <!-- footer section start -->
+    <div class="layout_padding footer_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div><img src="~/LayoutMain/images/footer-banner.jpg" class="footer-img"></div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <p class="dolor_text">Ích lợi của việc đi là để điều chỉnh trí tưởng tượng với thực tế,vì vậy thay vì ngồi hình dung ra, hãy cứ đi để xem nó thực sự là gì!</p>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <h1 class="quick_text">Thành Viên</h1>
+                    <div class="chevron_arrow"><img src="~/LayoutMain/images/chevron-arrow.png"><span class="padding-left">Trần Gia Nhi</span></div>
+                    <div class="chevron_arrow"><img src="~/LayoutMain/images/chevron-arrow.png"><span class="padding-left">Cù Thị Lâm Oanh</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer section end -->
+    <!-- copyright section start -->
+    <div class="copyright">
+        <p class="copyright_text">Design By Group 14 in Đồ Án 1</p>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="~/LayoutMain/js/jquery.min.js"></script>
+    <script src="~/LayoutMain/js/popper.min.js"></script>
+    <script src="~/LayoutMain/js/bootstrap.bundle.min.js"></script>
+    <script src="~/LayoutMain/js/jquery-3.0.0.min.js"></script>
+    <script src="~/LayoutMain/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="~/LayoutMain/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/LayoutMain/js/custom.js"></script>
+    <!-- javascript -->
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script>
+         $(document).ready(function(){
+         $(".fancybox").fancybox({
+         openEffect: "none",
+         closeEffect: "none"
+         });
+
+         $(".zoom").hover(function(){
+
+         $(this).addClass('transition');
+         }, function(){
+
+         $(this).removeClass('transition');
+         });
+         });
+
+    </script>
+
+</body>
+</html>

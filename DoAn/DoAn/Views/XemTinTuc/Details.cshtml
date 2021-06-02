@@ -1,0 +1,17 @@
+﻿@model DoAn.Models.TinTuc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="Thongtin" style="text-align:center; font-size:16px">
+    <div id="tenTour" style="font-size:22px">@Model.TenTT</div>
+    <img src="@Url.Content(Model.ImageTT)" style="width:1000px; height:700px" />
+    <div id="NoiDungTT">Nội Dung Tin Tức:@Model.NoiDungTT</div>
+    <div id="NgayNhap">Ngày Cập Nhật:@Model.NgayNhapTT</div>
+</div>
+
+<p>
+    @Html.ActionLink("Trở về", "Index")
+</p>

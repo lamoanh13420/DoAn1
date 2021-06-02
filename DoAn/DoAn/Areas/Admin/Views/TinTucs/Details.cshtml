@@ -1,0 +1,50 @@
+﻿@model DoAn.Models.TinTuc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông Tin Tin Tức</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageTT)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImageTT)" style="height:200px;width:200px;margin:10px" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDungTT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDungTT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayNhapTT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayNhapTT)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ID_TT }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

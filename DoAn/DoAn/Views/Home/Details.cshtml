@@ -1,0 +1,124 @@
+﻿@model DoAn.Models.Tour
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông Tin Tour</h2>
+
+<div id="Thongtin" style="text-align:center; font-size:16px">
+    <div id="tenTour">@Model.TenTour</div>
+    <div id="MoTa">@Model.MoTa</div>
+    <div id="Hinh">
+        <img src="@Url.Content(Model.HinhAnh)" style="width:1000px; height:700px" />
+    </div>
+    <div id="khachsan">Khách sạn: @Model.KhachSan</div>
+    <div id="PhuongTien">Phương Tiện:@Model.PhuongTien</div>
+    <div id="Gia">Chi Phí:@Model.Gia</div>
+    <div id="NgayKH">Ngày khởi hành:@Model.NgayKhoiHanh</div>
+    <div id="NgayKT">Ngày kết thúc:@Model.NgayKetThuc</div>
+    <div id="NgayTT">Ngày tập trung:@Model.NgayTapTrung</div>
+    <div id="DiaDiemTT">Địa điểm tập trung:@Model.DiaChiTapTrung</div>
+    <div id="LoaiTour">Loại Tour:@Model.LoaiTour.TenLoaiTour</div>
+</div>
+@*<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachSan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachSan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhuongTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhuongTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayKhoiHanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayKhoiHanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayKetThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayKetThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayTapTrung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayTapTrung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChiTapTrung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChiTapTrung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiTour.TenLoaiTour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiTour.TenLoaiTour)
+        </dd>
+
+    </dl>
+</div>*@
+@using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaTour = Model.ID_Tour, @strURL = Request.Url.ToString() }))
+{
+    <input type="submit" style="cursor:pointer" value="Đặt Tour &#xf07a;" id="btnGioHang" class="btn btn-primary" />
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

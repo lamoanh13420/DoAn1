@@ -1,0 +1,36 @@
+﻿@using DoAn.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Giỏ Hàng</h2>
+
+<table>
+    <tr>
+        <th>Mã Tour</th>
+    
+        <th>Tên Tour</th>
+    
+        <th>Chi Phí</th>
+   
+        <th>Số Lượng Vé</th>
+    
+        <th>Thành Tiền</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.iMaTour</td>
+        
+            <td>@item.sTenTour</td>
+       
+            <td>@string.Format("{0:0,0}", item.dDonGia.ToString()) VND</td>
+        
+            <td>@item.iSoLuong</td>
+        
+            <td>@string.Format("{0:0,0}", item.dThanhTien.ToString()) VND</td>
+        </tr>
+    }
+</table>
