@@ -79,7 +79,7 @@
                     <div class="numbar_text">@Html.DisplayFor(modelItem => item.Gia)&nbsp; VNĐ</div>
                     <button class="mobile_bt">
                         @Html.ActionLink("Chi Tiết", "Details", new { id = item.ID_Tour })
-                        <i style="color:brown" href="/TravelShoppingCart/AddtoCart/@item.ID_Tour">Đặt Vé</i>
+                        <a style="color:brown" href="/TravelShoppingCart/AddtoCart/@item.ID_Tour">Đặt Vé</a>
                     </button>
                 </div>
                 }
