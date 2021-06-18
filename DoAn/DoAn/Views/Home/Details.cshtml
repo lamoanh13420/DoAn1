@@ -6,114 +6,145 @@
 }
 
 <h2>Thông Tin Tour</h2>
+<table style="text-align:center">
+    <caption>@Model.TenTour</caption>
+    <tr>
+        <th rowspan="20"><img src="@Url.Content(Model.HinhAnh)" style="width:50%; height:auto" /></th>
+        <td> <i class='fas fa-map-marker-alt' style='font-size:20px; color:forestgreen'> </i>&ensp; Địa Điểm: @Model.TenTour</td>
+    </tr>
+    <tr>
+        <td><i class="fas fa-stopwatch" style='font-size:20px; color:forestgreen'></i>&ensp;Thời Gian: @Model.ThoiGian</td>
+    </tr>
+    <tr>
+        <td><i class="fas fa-hotel" style='font-size:20px; color:forestgreen'></i>&ensp;Khách Sạn: @Model.KhachSan</td>
+    </tr>
+    <tr>
+        <td><i class="fas fa-fighter-jet" style='font-size:20px; color:forestgreen'></i>&ensp;Phương Tiện: @Model.PhuongTien</td>
+    </tr>
+    <tr>
+        <td> <i class="far fa-calendar-alt" style='font-size:20px; color:forestgreen'></i>&ensp;Ngày Khởi Hành: @Model.NgayKhoiHanh</td>
+    </tr>
+    <tr>
+        <td><i class="fas fa-fire" style='font-size:20px; color:forestgreen'></i>&ensp;Địa Chỉ Tập Trung: @Model.DiaChiTapTrung</td>
+    </tr>
+    <tr>
+        <td><i class="far fa-money-bill-alt" style='font-size:20px; color:forestgreen'></i>&ensp;Gía Chỉ: @Model.Gia</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td rowspan="15" colspan="2"><i class="fas fa-edit" style='font-size:20px; color:forestgreen'></i>&ensp;Mô tả: @Model.MoTa</td>
+    </tr>
+</table>
 
-<div id="Thongtin" style="text-align:center; font-size:16px">
-    <div id="tenTour">@Model.TenTour</div>
-    <div id="MoTa">@Model.MoTa</div>
-    <div id="Hinh">
-        <img src="@Url.Content(Model.HinhAnh)" style="width:1000px; height:700px" />
-    </div>
-    <div id="khachsan">Khách sạn: @Model.KhachSan</div>
-    <div id="PhuongTien">Phương Tiện:@Model.PhuongTien</div>
-    <div id="Gia">Chi Phí:@Model.Gia</div>
-    <div id="NgayKH">Ngày khởi hành:@Model.NgayKhoiHanh</div>
-    <div id="NgayKT">Ngày kết thúc:@Model.ThoiGian</div>
-    <div id="DiaDiemTT">Địa điểm tập trung:@Model.DiaChiTapTrung</div>
-    <div id="LoaiTour">Loại Tour:@Model.LoaiTour.TenLoaiTour</div>
-</div>
+@*<div id="Thongtin" style="text-align:center; font-size:16px">
+        <div id="tenTour">@Model.TenTour</div>
+        <div id="MoTa">@Model.MoTa</div>
+        <div id="Hinh">
+            <img src="@Url.Content(Model.HinhAnh)" style="width:1000px; height:700px" />
+        </div>
+        <div id="khachsan">Khách sạn: @Model.KhachSan</div>
+        <div id="PhuongTien">Phương Tiện:@Model.PhuongTien</div>
+        <div id="Gia">Chi Phí:@Model.Gia</div>
+        <div id="NgayKH">Ngày khởi hành:@Model.NgayKhoiHanh</div>
+        <div id="NgayKT">Ngày kết thúc:@Model.ThoiGian</div>
+        <div id="DiaDiemTT">Địa điểm tập trung:@Model.DiaChiTapTrung</div>
+        <div id="LoaiTour">Loại Tour:@Model.LoaiTour.TenLoaiTour</div>
+    </div>*@
 @*<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenTour)
-        </dt>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenTour)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenTour)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TenTour)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.HinhAnh)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HinhAnh)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.HinhAnh)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.KhachSan)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.KhachSan)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.KhachSan)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.KhachSan)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhuongTien)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhuongTien)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhuongTien)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PhuongTien)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gia)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Gia)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gia)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Gia)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayKhoiHanh)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayKhoiHanh)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayKhoiHanh)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NgayKhoiHanh)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayKetThuc)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayKetThuc)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayKetThuc)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NgayKetThuc)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayTapTrung)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayTapTrung)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayTapTrung)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NgayTapTrung)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChiTapTrung)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DiaChiTapTrung)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChiTapTrung)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DiaChiTapTrung)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiTour.TenLoaiTour)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.LoaiTour.TenLoaiTour)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiTour.TenLoaiTour)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LoaiTour.TenLoaiTour)
+            </dd>
 
-    </dl>
-</div>*@
+        </dl>
+    </div>*@
 
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>

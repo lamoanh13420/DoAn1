@@ -2,40 +2,43 @@
 
 @{
     ViewBag.Title = "Details";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thông tin cá nhân</h2>
+<h2>Details</h2>
+@*
+    <div id="Thongtin" style="text-align:center; font-size:16px">
+        <div id="HoTenKH">@Model.HoTenKH</div>
+        <div id="SDT">@Model.SDT</div>
+        <div id="NgaySinh">Khách sạn: @Model.NgaySinh</div>
+        <div id="GioiTinh">Phương Tiện:@Model.GioiTinh</div>
+        <div id="DiaChi">Chi Phí:@Model.DiaChi</div>
+        <div id="ID_KH">Ngày khởi hành:@Model.ID_KH</div>
+        <div id="Email">Ngày kết thúc:@Model.Email</div>
+        <div id="Password">Địa điểm tập trung:@Model.Password</div>
+    </div>*@
 
-@*<div>
-    <p class="h3">@Model.HoTenKH</p>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2"><label asp-for="Họ Tên: "></label></dt>
-        <dd class="col-sm-10">@Model.HoTenKH</dd>
-        <dt class="col-sm-2"><label asp-for="Số Điện Thoại: "></label></dt>
-        <dd class="col-sm-10">@Model.SDT</dd>
-        <dt class="col-sm-2"><label asp-for="Ngày Sinh: "></label></dt>
-        <dd class="col-sm-10">@Model.NgaySinh</dd>
-        <dt class="col-sm-2"><label asp-for="Giới Tính: "></label></dt>
-        <dd class="col-sm-10">@Model.GioiTinh</dd>
-        <dt class="col-sm-2"><label asp-for="Mã Hiển Thị: "></label></dt>
-        <dd class="col-sm-10">@Model.ID_KH</dd>
-        <dt class="col-sm-2"><label asp-for="Enail: "></label></dt>
-        <dd class="col-sm-10">@Model.Email</dd>
-        <dt class="col-sm-2"><label asp-for="Password: "></label></dt>
-        <dd class="col-sm-10">@Model.Password</dd>
-    </dl>
-</div>*@
+<div class="border-right">
+    <div class="p-3 py-5" style="padding-right: 20px;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-left" style="font-weight: bold;">Profile</h4>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6"><label class="labels" style="font-size:15px">Username</label><input type="text" class="form-control" value="@Model.HoTenKH" readonly="readonly"></div>
 
-<div id="Thongtin" style="text-align:center; font-size:16px">
-    <div id="HoTenKH">@Model.HoTenKH</div>
-    <div id="SDT">@Model.SDT</div>
-    <div id="NgaySinh">@Model.NgaySinh</div>
-    <div id="GioiTinh">Khách sạn: @Model.GioiTinh</div>
-    <div id="ID_KH">Phương Tiện:@Model.ID_KH</div>
-    <div id="Email">Chi Phí:@Model.Email</div>
-    <div id="Password">Ngày khởi hành:@Model.Password</div>
+            <div class="col-md-6"><label class="labels" style="font-size:15px">Customer name</label><input type="text" class="form-control" value="@Model.SDT" readonly="readonly"></div>
+            <div class="col-md-6">
+                <label class="labels" style="font-size:15px">Address</label><input type="text" class="form-control" placeholder="3891 Ranchview Dr. Richardson, California 62639" value="@Model.DiaChi" readonly="readonly">
+            </div>
+
+            <div class="col-md-6">
+                <label class="labels" style="font-size:15px">Email</label><input type="text" class="form-control" value="@Model.Email" readonly="readonly">
+            </div>
+
+        </div>
+
+    </div>
 </div>
 
 <p>

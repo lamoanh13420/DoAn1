@@ -30,6 +30,8 @@
     </style>
 </head>
 
+<br /><br /><br />
+
 @using (Html.BeginForm("Index", "Home", FormMethod.Get))
 {
 <!-- search box start -->
@@ -59,9 +61,11 @@
 <!-- search box end -->
 }
 
+<h1 class="promoted_text" style="border-bottom: 5px solid #4bc714;">Danh Sách Tour Du Lịch</h1>
+
 <div class=" layout_padding promoted_sectipon">
     <div class="container">
-        <h1 class="promoted_text" style="border-bottom: 5px solid #4bc714;">Danh Sách Tour Du Lịch</h1>
+        
         <div class="images_main">
             <div class="row">
                 @foreach (var item in Model)
@@ -75,7 +79,7 @@
                     <div class="numbar_text">@Html.DisplayFor(modelItem => item.Gia)&nbsp; VNĐ</div>
                     <button class="mobile_bt">
                         @Html.ActionLink("Chi Tiết", "Details", new { id = item.ID_Tour })
-                        <a style="color:brown" href="/TravelShoppingCart/AddtoCart/@item.ID_Tour">Đặt Vé</a>
+                        <i style="color:brown" href="/TravelShoppingCart/AddtoCart/@item.ID_Tour">Đặt Vé</i>
                     </button>
                 </div>
                 }

@@ -11,12 +11,17 @@ namespace DoAn.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
+
     public partial class CamNangDuLich
     {
         public int ID_CNDL { get; set; }
         public string TenCNDL { get; set; }
         public string ImageCNDL { get; set; }
         public string NoiDungCNDL { get; set; }
+        public Nullable<System.DateTime> NgayNhapCN { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
 }

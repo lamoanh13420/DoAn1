@@ -44,7 +44,7 @@
                         {
                             <input type="hidden" value="@item._tour.ID_Tour" name="ID_Tour" />
                             <input type="number" value="@item._quantity" name="SoLuongVe" />
-                            <input type="submit" value="Update"  style="background-color:aquamarine"/>
+                            <input type="submit" value="CẬP NHẬT" class="btn btn-success" />
                         }
 
                     </td>
@@ -89,10 +89,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="@Url.Action("Create","Customers")" class="btn btn-success">Đăng ký</a>
+                                    <a href="@Url.Action("Create","Customers")" class="btn btn-outline-success">Đăng ký</a>
                                 </td>
                                 <td>
-                                    <input type="submit" value="Đặt Vé" class="btn btn-success" />
+                                    <input type="submit" value="Đặt Vé" class="btn btn-outline-success" />
 
                                 </td>
                             </tr>
@@ -102,6 +102,6 @@
             </tr>
         </tfoot>
     </table>
-    <a style="text-align:center" href="@Url.Action("Index","Home")"><<<<<< Continue to Travel</a>
+    <a style="text-align:right" href="@Url.Action("Index","Home")"><<<<<< Trở Về</a>
 
 }
