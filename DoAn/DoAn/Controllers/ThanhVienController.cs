@@ -18,16 +18,23 @@ namespace DoAn.Controllers
         // GET: Admin/KhachHangs/Details/5
         public ActionResult Details(int? id)
         {
+            KhachHang khachHang = db.KhachHangs.Find(id);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
+            
             if (khachHang == null)
             {
                 return HttpNotFound();
             }
-            return View(khachHang);
+            return View();
+        }
+
+        public ActionResult Index(KhachHang kh)
+        {
+            return View(db.KhachHangs.ToList());
         }
 
         // GET: Admin/KhachHangs/Create
@@ -79,7 +86,7 @@ namespace DoAn.Controllers
                 KhachHang kh = db.KhachHangs.SingleOrDefault(n => n.Email == email && n.Password == matkhau);
                 if(kh!=null)
                 {
-                    Session["Email"] = kh.Email;
+                    Session["HoTenKH"] = kh.HoTenKH.ToString();
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -94,7 +101,7 @@ namespace DoAn.Controllers
 
         public ActionResult DangXuat()
         {
-            Session["Email"] = null;
+            Session["HoTenKH"] = null;
             return Redirect("/");
         }
 

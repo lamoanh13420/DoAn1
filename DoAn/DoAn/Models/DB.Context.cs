@@ -26,8 +26,9 @@ namespace DoAn.Models
         }
     
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<chitietDH> chitietDHs { get; set; }
-        public virtual DbSet<DonHang> DonHangs { get; set; }
+        public virtual DbSet<CamNangDuLich> CamNangDuLiches { get; set; }
+        public virtual DbSet<ChiTietDatVe> ChiTietDatVes { get; set; }
+        public virtual DbSet<DatVe> DatVes { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<LichTrinh> LichTrinhs { get; set; }
         public virtual DbSet<LoaiTour> LoaiTours { get; set; }

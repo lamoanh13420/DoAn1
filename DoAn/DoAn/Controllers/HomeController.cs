@@ -24,7 +24,7 @@ namespace DoAn.Controllers
             {
                 return View(db.Tours.Where(s => s.Gia.ToString().StartsWith(search)).ToList());
             }
-
+            
             return View(db.Tours.ToList());
         }
 

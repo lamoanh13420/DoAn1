@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DulichModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="TaiKhoan" />
+    </Key>
+    <Property Name="TaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CamNangDuLich">
+    <Key>
+      <PropertyRef Name="ID_CNDL" />
+    </Key>
+    <Property Name="ID_CNDL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenCNDL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ImageCNDL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDungCNDL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ChiTietDatVe">
+    <Key>
+      <PropertyRef Name="ID_CT" />
+    </Key>
+    <Property Name="ID_CT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Tour" Type="Int32" />
+    <Property Name="ID_DatVe" Type="Int32" />
+    <Property Name="SoLuongVe" Type="Int32" />
+    <Property Name="ThanhTien" Type="Double" />
+    <NavigationProperty Name="DatVe" Relationship="Self.FK__ChiTietDa__ID_Da__286302EC" FromRole="ChiTietDatVe" ToRole="DatVe" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK__ChiTietDa__ID_To__276EDEB3" FromRole="ChiTietDatVe" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="DatVe">
+    <Key>
+      <PropertyRef Name="ID_DatVe" />
+    </Key>
+    <Property Name="ID_DatVe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_KH" Type="Int32" />
+    <Property Name="NgayDat" Type="DateTime" Precision="3" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ChiTietDatVes" Relationship="Self.FK__ChiTietDa__ID_Da__286302EC" FromRole="DatVe" ToRole="ChiTietDatVe" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK__DatVe__ID_KH__22AA2996" FromRole="DatVe" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="ID_KH" />
+    </Key>
+    <Property Name="ID_KH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GioiTinh" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="DatVes" Relationship="Self.FK__DatVe__ID_KH__22AA2996" FromRole="KhachHang" ToRole="DatVe" />
+  </EntityType>
+  <EntityType Name="LichTrinh">
+    <Key>
+      <PropertyRef Name="ID_LichTrinh" />
+    </Key>
+    <Property Name="ID_LichTrinh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Tour" Type="Int32" />
+    <Property Name="Ngay" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TenLT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnhLT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK__LichTrinh__ID_To__1920BF5C" FromRole="LichTrinh" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="LoaiTour">
+    <Key>
+      <PropertyRef Name="ID_LoaiTour" />
+    </Key>
+    <Property Name="ID_LoaiTour" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiTour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tours" Relationship="Self.FK__Tour__ID_LoaiTou__145C0A3F" FromRole="LoaiTour" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="PhaiHoi">
+    <Key>
+      <PropertyRef Name="ID_PH" />
+    </Key>
+    <Property Name="ID_PH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Tour" Type="Int32" />
+    <Property Name="TenNguoiGui" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TieudePH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoidungPH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayGui" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK__PhaiHoi__ID_Tour__1DE57479" FromRole="PhaiHoi" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="ID_TT" />
+    </Key>
+    <Property Name="ID_TT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTT" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ImageTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDungTT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayNhapTT" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Tour">
+    <Key>
+      <PropertyRef Name="ID_Tour" />
+    </Key>
+    <Property Name="ID_Tour" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KhachSan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhuongTien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NgayKhoiHanh" Type="DateTime" Precision="0" />
+    <Property Name="ThoiGian" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChiTapTrung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ID_LoaiTour" Type="Int32" />
+    <NavigationProperty Name="ChiTietDatVes" Relationship="Self.FK__ChiTietDa__ID_To__276EDEB3" FromRole="Tour" ToRole="ChiTietDatVe" />
+    <NavigationProperty Name="LichTrinhs" Relationship="Self.FK__LichTrinh__ID_To__1920BF5C" FromRole="Tour" ToRole="LichTrinh" />
+    <NavigationProperty Name="LoaiTour" Relationship="Self.FK__Tour__ID_LoaiTou__145C0A3F" FromRole="Tour" ToRole="LoaiTour" />
+    <NavigationProperty Name="PhaiHois" Relationship="Self.FK__PhaiHoi__ID_Tour__1DE57479" FromRole="Tour" ToRole="PhaiHoi" />
+  </EntityType>
+  <Association Name="FK__ChiTietDa__ID_Da__286302EC">
+    <End Role="DatVe" Type="Self.DatVe" Multiplicity="0..1" />
+    <End Role="ChiTietDatVe" Type="Self.ChiTietDatVe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DatVe">
+        <PropertyRef Name="ID_DatVe" />
+      </Principal>
+      <Dependent Role="ChiTietDatVe">
+        <PropertyRef Name="ID_DatVe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDa__ID_To__276EDEB3">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="ChiTietDatVe" Type="Self.ChiTietDatVe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="ID_Tour" />
+      </Principal>
+      <Dependent Role="ChiTietDatVe">
+        <PropertyRef Name="ID_Tour" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DatVe__ID_KH__22AA2996">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="DatVe" Type="Self.DatVe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="ID_KH" />
+      </Principal>
+      <Dependent Role="DatVe">
+        <PropertyRef Name="ID_KH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LichTrinh__ID_To__1920BF5C">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="LichTrinh" Type="Self.LichTrinh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="ID_Tour" />
+      </Principal>
+      <Dependent Role="LichTrinh">
+        <PropertyRef Name="ID_Tour" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tour__ID_LoaiTou__145C0A3F">
+    <End Role="LoaiTour" Type="Self.LoaiTour" Multiplicity="0..1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiTour">
+        <PropertyRef Name="ID_LoaiTour" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="ID_LoaiTour" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhaiHoi__ID_Tour__1DE57479">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="PhaiHoi" Type="Self.PhaiHoi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="ID_Tour" />
+      </Principal>
+      <Dependent Role="PhaiHoi">
+        <PropertyRef Name="ID_Tour" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DulichEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="CamNangDuLiches" EntityType="Self.CamNangDuLich" />
+    <EntitySet Name="ChiTietDatVes" EntityType="Self.ChiTietDatVe" />
+    <EntitySet Name="DatVes" EntityType="Self.DatVe" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="LichTrinhs" EntityType="Self.LichTrinh" />
+    <EntitySet Name="LoaiTours" EntityType="Self.LoaiTour" />
+    <EntitySet Name="PhaiHois" EntityType="Self.PhaiHoi" />
+    <EntitySet Name="TinTucs" EntityType="Self.TinTuc" />
+    <EntitySet Name="Tours" EntityType="Self.Tour" />
+    <AssociationSet Name="FK__ChiTietDa__ID_Da__286302EC" Association="Self.FK__ChiTietDa__ID_Da__286302EC">
+      <End Role="DatVe" EntitySet="DatVes" />
+      <End Role="ChiTietDatVe" EntitySet="ChiTietDatVes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDa__ID_To__276EDEB3" Association="Self.FK__ChiTietDa__ID_To__276EDEB3">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="ChiTietDatVe" EntitySet="ChiTietDatVes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DatVe__ID_KH__22AA2996" Association="Self.FK__DatVe__ID_KH__22AA2996">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="DatVe" EntitySet="DatVes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LichTrinh__ID_To__1920BF5C" Association="Self.FK__LichTrinh__ID_To__1920BF5C">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="LichTrinh" EntitySet="LichTrinhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tour__ID_LoaiTou__145C0A3F" Association="Self.FK__Tour__ID_LoaiTou__145C0A3F">
+      <End Role="LoaiTour" EntitySet="LoaiTours" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhaiHoi__ID_Tour__1DE57479" Association="Self.FK__PhaiHoi__ID_Tour__1DE57479">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="PhaiHoi" EntitySet="PhaiHois" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

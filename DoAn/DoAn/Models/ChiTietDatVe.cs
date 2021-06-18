@@ -12,14 +12,15 @@ namespace DoAn.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class chitietDH
+    public partial class ChiTietDatVe
     {
-        public int ID_DonHang { get; set; }
-        public int ID_Tour { get; set; }
-        public Nullable<int> Soluong { get; set; }
-        public Nullable<decimal> DonGia { get; set; }
+        public int ID_CT { get; set; }
+        public Nullable<int> ID_Tour { get; set; }
+        public Nullable<int> ID_DatVe { get; set; }
+        public Nullable<int> SoLuongVe { get; set; }
+        public Nullable<double> ThanhTien { get; set; }
     
-        public virtual DonHang DonHang { get; set; }
+        public virtual DatVe DatVe { get; set; }
         public virtual Tour Tour { get; set; }
     }
 }

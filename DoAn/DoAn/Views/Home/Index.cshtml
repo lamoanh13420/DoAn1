@@ -5,34 +5,58 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    <style>
+        .card {
+            width: 250px;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+        img {
+            border-radius: 5px 5px 0 0;
+        }
+
+        #margin-card {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
 @using (Html.BeginForm("Index", "Home", FormMethod.Get))
 {
-    <!-- search box start -->
-    <div class="container">
-        <div class="search_box">
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="form-group">
-                        @Html.TextBox("search", "", htmlAttributes: new { @class = "email_boton", @placeholder = "Search for" })
-                    </div>
+<!-- search box start -->
+<div class="container">
+    <div class="search_box">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    @Html.TextBox("search", "", htmlAttributes: new { @class = "email_boton", @placeholder = "Search for" })
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <input type="submit" value="Tìm Kiếm" />
-                    </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="submit" value="Tìm Kiếm" />
                 </div>
-                <div class="fashion_menu">
-                    <ul>
-                        <li>@Html.RadioButton("searchBy", "TenTour")<text>Tên Tour</text></li>
-                        <li>@Html.RadioButton("searchBy", "LoaiTour")<text>Loại Tour</text></li>
-                        <li>@Html.RadioButton("searchBy", "ChiPhi")<text>Chi Phí</text></li>
-                    </ul>
-                </div>
+            </div>
+            <div class="fashion_menu">
+                <ul>
+                    <li>@Html.RadioButton("searchBy", "TenTour")<text>Tên Tour</text></li>
+                    <li>@Html.RadioButton("searchBy", "LoaiTour")<text>Loại Tour</text></li>
+                    <li>@Html.RadioButton("searchBy", "ChiPhi")<text>Chi Phí</text></li>
+                </ul>
             </div>
         </div>
     </div>
-    <!-- search box end -->
-
+</div>
+<!-- search box end -->
 }
 
 <div class=" layout_padding promoted_sectipon">
@@ -42,16 +66,18 @@
             <div class="row">
                 @foreach (var item in Model)
                 {
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="images"><img src="@Url.Content(item.HinhAnh)" style="width: 100%;"></div>
-                        <button class="promoted_bt">
-                            @Html.DisplayFor(modelItem => item.TenTour)
-                        </button>
-                        <div class="numbar_text">@Html.DisplayFor(modelItem => item.Gia)</div>
-                        <button class="mobile_bt">
-                            @Html.ActionLink("Chi Tiết", "Details", new { id = item.ID_Tour })
-                        </button>
-                    </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="img"><img src="@Url.Content(item.HinhAnh)" style="width: 100%;"></div>
+                    <br /><br /><br /><br />
+                    <button class="promoted_bt">
+                        @Html.DisplayFor(modelItem => item.TenTour)
+                    </button>
+                    <div class="numbar_text">@Html.DisplayFor(modelItem => item.Gia)&nbsp; VNĐ</div>
+                    <button class="mobile_bt">
+                        @Html.ActionLink("Chi Tiết", "Details", new { id = item.ID_Tour })
+                        <a style="color:brown" href="/TravelShoppingCart/AddtoCart/@item.ID_Tour">Đặt Vé</a>
+                    </button>
+                </div>
                 }
             </div>
         </div>

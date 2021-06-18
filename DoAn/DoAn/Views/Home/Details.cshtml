@@ -17,8 +17,7 @@
     <div id="PhuongTien">Phương Tiện:@Model.PhuongTien</div>
     <div id="Gia">Chi Phí:@Model.Gia</div>
     <div id="NgayKH">Ngày khởi hành:@Model.NgayKhoiHanh</div>
-    <div id="NgayKT">Ngày kết thúc:@Model.NgayKetThuc</div>
-    <div id="NgayTT">Ngày tập trung:@Model.NgayTapTrung</div>
+    <div id="NgayKT">Ngày kết thúc:@Model.ThoiGian</div>
     <div id="DiaDiemTT">Địa điểm tập trung:@Model.DiaChiTapTrung</div>
     <div id="LoaiTour">Loại Tour:@Model.LoaiTour.TenLoaiTour</div>
 </div>
@@ -114,10 +113,6 @@
 
     </dl>
 </div>*@
-@using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaTour = Model.ID_Tour, @strURL = Request.Url.ToString() }))
-{
-    <input type="submit" style="cursor:pointer" value="Đặt Tour &#xf07a;" id="btnGioHang" class="btn btn-primary" />
-}
 
 <p>
     @Html.ActionLink("Back to List", "Index")

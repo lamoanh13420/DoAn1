@@ -77,6 +77,7 @@ namespace DoAn.Areas.Admin.Controllers
             {
                 return View();
             }
+            //return View();
         }
 
         // GET: Admin/TinTucs/Edit/5
@@ -121,6 +122,7 @@ namespace DoAn.Areas.Admin.Controllers
             {
                 return View();
             }
+            //return View();
         }
 
         // GET: Admin/TinTucs/Delete/5

@@ -1,0 +1,44 @@
+﻿@model DoAn.Models.KhachHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin cá nhân</h2>
+
+@*<div>
+    <p class="h3">@Model.HoTenKH</p>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2"><label asp-for="Họ Tên: "></label></dt>
+        <dd class="col-sm-10">@Model.HoTenKH</dd>
+        <dt class="col-sm-2"><label asp-for="Số Điện Thoại: "></label></dt>
+        <dd class="col-sm-10">@Model.SDT</dd>
+        <dt class="col-sm-2"><label asp-for="Ngày Sinh: "></label></dt>
+        <dd class="col-sm-10">@Model.NgaySinh</dd>
+        <dt class="col-sm-2"><label asp-for="Giới Tính: "></label></dt>
+        <dd class="col-sm-10">@Model.GioiTinh</dd>
+        <dt class="col-sm-2"><label asp-for="Mã Hiển Thị: "></label></dt>
+        <dd class="col-sm-10">@Model.ID_KH</dd>
+        <dt class="col-sm-2"><label asp-for="Enail: "></label></dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+        <dt class="col-sm-2"><label asp-for="Password: "></label></dt>
+        <dd class="col-sm-10">@Model.Password</dd>
+    </dl>
+</div>*@
+
+<div id="Thongtin" style="text-align:center; font-size:16px">
+    <div id="HoTenKH">@Model.HoTenKH</div>
+    <div id="SDT">@Model.SDT</div>
+    <div id="NgaySinh">@Model.NgaySinh</div>
+    <div id="GioiTinh">Khách sạn: @Model.GioiTinh</div>
+    <div id="ID_KH">Phương Tiện:@Model.ID_KH</div>
+    <div id="Email">Chi Phí:@Model.Email</div>
+    <div id="Password">Ngày khởi hành:@Model.Password</div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_KH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

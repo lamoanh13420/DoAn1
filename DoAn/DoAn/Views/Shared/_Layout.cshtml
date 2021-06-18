@@ -32,8 +32,8 @@
 </head>
 <body>
     <!-- header section start -->
-    <div class="header_section" style="background-color: #69c934;">
-        <div class="container" style="height: 20px;background-color:#69c934;">
+    <div class="header_section" style="background-color:forestgreen;">
+        <div class="container" style="height: 20px;background-color: forestgreen;">
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
                     <marquee direction="up" style="width: 80px; font-size: 20px;">
@@ -58,17 +58,28 @@
                     </nav>
                 </div>
                 <div class="dangkydangnhap">
-                    @Html.Action("GioHangPartial","GioHang")
-                    @if (Session["Email"] != null)
-                    {
-                        @Session["Email"]
-                        <i class="fa fa-sign-out" aria-hidden="true"></i> @Html.ActionLink("Đăng Xuất", "DangXuat", "ThanhVien")
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Đăng Ký", "DangKy", "ThanhVien")
-                        @Html.ActionLink("Đăng Nhập", "DangNhap", "ThanhVien")
-                    }
+                    <span>
+                        <a href="~/Views/TravelShoppingCart/ShowToCart.cshtml">
+                            <img src="~/Images/cart0.jpg" style="height:40px;width:40px;padding-top:2px; padding-left:5px; padding-bottom:10px" />
+
+                        </a>
+                        @Html.Action("BagCart", "TravelShoppingCart")
+                    </span>
+                    
+                    <span>
+                        @if (Session["HoTenKH"] != null)
+                        {
+                            <i style="color:azure; margin-top:15px">@Session["HoTenKH"]!!</i>
+                        
+                            @*<a>@Html.ActionLink("Chi Tiết", "Details", new { id = Model.ID_KH })*@
+                            @*<i style="color:azure; margin-top:15px">@Html.ActionLink("Thông tin cá nhân!", "Details", "ThanhVien", new { id = Model.ID_KH })</i>*@
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> @Html.ActionLink("Đăng Xuất", "DangXuat", "ThanhVien")
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-outline-success" style="padding-bottom:5px; padding-top:1px">@Html.ActionLink("Đăng Ký", "DangKy", "ThanhVien") / @Html.ActionLink("Đăng Nhập", "DangNhap", "ThanhVien")</button>
+                        }
+                    </span>
                 </div>
             </div>
         </div>
@@ -81,9 +92,7 @@
                 <div class="col-sm-12">
                     <h2 class="banner_taital">Cuộc Hành Trình Không Bao Giờ Dừng Lại</h2>
                     <h3 class="banner-h3">Hãy Đến Với Chúng Tôi, Chúng Tôi Sẽ Đưa Bạn Đi Khám Phá Mọi Nơi Bạn Muốn</h3>
-                    <div class="banner_bt">
-                        <button class="read_bt">Read More</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>

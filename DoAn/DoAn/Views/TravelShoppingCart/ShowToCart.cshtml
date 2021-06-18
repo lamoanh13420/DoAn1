@@ -1,0 +1,107 @@
+﻿@model DoAn.Models.Cart
+
+@{
+    ViewBag.Title = "ShowToCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr />
+<br />
+
+<h1 style="text-align:center">Travel</h1>
+<br />
+<hr />
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên Tour </th>
+                <th>Hình Ảnh</th>
+                <th>Gía Tour</th>
+                <th>Số Lượng Vé </th>
+                <th>Gía Tiền</th>
+                <th>Xóa</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                double total = Convert.ToDouble(item._tour.Gia.Value * item._quantity);
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item._tour.TenTour)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item._tour.HinhAnh)" style="width:100px;height:100px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item._tour.Gia)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Update_Quantity_Cart", "TravelShoppingCart"))
+                        {
+                            <input type="hidden" value="@item._tour.ID_Tour" name="ID_Tour" />
+                            <input type="number" value="@item._quantity" name="SoLuongVe" />
+                            <input type="submit" value="Update"  style="background-color:aquamarine"/>
+                        }
+
+                    </td>
+
+                    <td>
+                        Total: @total VNĐ
+                    </td>
+                    <td>
+                        <a href="/TravelShoppingCart/RemoveCart/@item._tour.ID_Tour">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6" style="text-align:right">Tổng số tiền: @Model.Total_Money() VNĐ</td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="4" style="text-align:right">
+                    @using (Html.BeginForm("CheckOut", "TravelShoppingCart"))
+                    {
+                        <table style="border-collapse:separate;border-spacing:5px;">
+
+                            <tr>
+                                <td>Mã hiển thị : </td>
+                                <td><input type="text" name="ID_KH" required /></td>
+                            </tr>
+                            <tr>
+                                <td>Họ Tên : </td>
+                                <td><input type="text" name="HoTenKH" required /></td>
+                            </tr>
+                            <tr>
+                                <td>Email : </td>
+                                <td><input type="text" name="Email" required /></td>
+                            </tr>
+                            <tr>
+                                <td>Ghi Chú : </td>
+                                <td><input type="text" name="GhiChu" required /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Create","Customers")" class="btn btn-success">Đăng ký</a>
+                                </td>
+                                <td>
+                                    <input type="submit" value="Đặt Vé" class="btn btn-success" />
+
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <a style="text-align:center" href="@Url.Action("Index","Home")"><<<<<< Continue to Travel</a>
+
+}

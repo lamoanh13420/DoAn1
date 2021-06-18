@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6b9f09062cbb474d8e58a61571cd38b6" Name="Diagram1">
+        <EntityTypeShape EntityType="DulichModel.Admin" Width="1.5" PointX="7.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulichModel.CamNangDuLich" Width="1.5" PointX="7.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulichModel.ChiTietDatVe" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulichModel.DatVe" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulichModel.KhachHang" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulichModel.LichTrinh" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulichModel.LoaiTour" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulichModel.PhaiHoi" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulichModel.TinTuc" Width="1.5" PointX="7.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulichModel.Tour" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="DulichModel.FK__ChiTietDa__ID_Da__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="DulichModel.FK__ChiTietDa__ID_To__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="DulichModel.FK__DatVe__ID_KH__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="DulichModel.FK__LichTrinh__ID_To__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="DulichModel.FK__Tour__ID_LoaiTou__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="DulichModel.FK__PhaiHoi__ID_Tour__1DE57479" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

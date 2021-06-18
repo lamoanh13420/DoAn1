@@ -5,13 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2 style="text-align:center;color:green ">Đăng Nhập</h2>
+<hr />
+
 <table align="center" style="font-size:20px">
-    <h2 style="text-align:center;color:green ">Đăng Nhập</h2>
-    <br />
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true);
+        <tr style="height:50px">
+            <td>Họ Tên:</td>
+            <td>
+                @Html.TextBox("HoTenKH")
+            </td>
+        </tr>
         <tr style="height:50px">
             <td>Email</td>
             <td>

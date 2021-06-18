@@ -14,24 +14,33 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="SDT" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="chitietDH">
+        <EntityType Name="CamNangDuLich">
           <Key>
-            <PropertyRef Name="ID_DonHang" />
-            <PropertyRef Name="ID_Tour" />
+            <PropertyRef Name="ID_CNDL" />
           </Key>
-          <Property Name="ID_DonHang" Type="int" Nullable="false" />
-          <Property Name="ID_Tour" Type="int" Nullable="false" />
-          <Property Name="Soluong" Type="int" />
-          <Property Name="DonGia" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ID_CNDL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenCNDL" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ImageCNDL" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoiDungCNDL" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="DonHang">
+        <EntityType Name="ChiTietDatVe">
           <Key>
-            <PropertyRef Name="ID_DonHang" />
+            <PropertyRef Name="ID_CT" />
           </Key>
-          <Property Name="ID_DonHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TinhTrang" Type="int" />
-          <Property Name="NgayDat" Type="datetime" />
+          <Property Name="ID_CT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Tour" Type="int" />
+          <Property Name="ID_DatVe" Type="int" />
+          <Property Name="SoLuongVe" Type="int" />
+          <Property Name="ThanhTien" Type="float" />
+        </EntityType>
+        <EntityType Name="DatVe">
+          <Key>
+            <PropertyRef Name="ID_DatVe" />
+          </Key>
+          <Property Name="ID_DatVe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_KH" Type="int" />
+          <Property Name="NgayDat" Type="datetime" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -98,48 +107,47 @@
           <Property Name="PhuongTien" Type="nvarchar" MaxLength="50" />
           <Property Name="Gia" Type="decimal" Precision="18" Scale="2" />
           <Property Name="NgayKhoiHanh" Type="date" />
-          <Property Name="NgayKetThuc" Type="date" />
-          <Property Name="NgayTapTrung" Type="date" />
+          <Property Name="ThoiGian" Type="nvarchar" MaxLength="50" />
           <Property Name="DiaChiTapTrung" Type="nvarchar" MaxLength="100" />
           <Property Name="ID_LoaiTour" Type="int" />
         </EntityType>
-        <Association Name="FK__chitietDH__ID_Do__20C1E124">
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
-          <End Role="chitietDH" Type="Self.chitietDH" Multiplicity="*" />
+        <Association Name="FK__ChiTietDa__ID_Da__286302EC">
+          <End Role="DatVe" Type="Self.DatVe" Multiplicity="0..1" />
+          <End Role="ChiTietDatVe" Type="Self.ChiTietDatVe" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DonHang">
-              <PropertyRef Name="ID_DonHang" />
+            <Principal Role="DatVe">
+              <PropertyRef Name="ID_DatVe" />
             </Principal>
-            <Dependent Role="chitietDH">
-              <PropertyRef Name="ID_DonHang" />
+            <Dependent Role="ChiTietDatVe">
+              <PropertyRef Name="ID_DatVe" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__chitietDH__ID_To__21B6055D">
-          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-          <End Role="chitietDH" Type="Self.chitietDH" Multiplicity="*" />
+        <Association Name="FK__ChiTietDa__ID_To__276EDEB3">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="ChiTietDatVe" Type="Self.ChiTietDatVe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tour">
               <PropertyRef Name="ID_Tour" />
             </Principal>
-            <Dependent Role="chitietDH">
+            <Dependent Role="ChiTietDatVe">
               <PropertyRef Name="ID_Tour" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DonHang__ID_KH__1ED998B2">
+        <Association Name="FK__DatVe__ID_KH__22AA2996">
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <End Role="DatVe" Type="Self.DatVe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KhachHang">
               <PropertyRef Name="ID_KH" />
             </Principal>
-            <Dependent Role="DonHang">
+            <Dependent Role="DatVe">
               <PropertyRef Name="ID_KH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichTrinh__ID_To__117F9D94">
+        <Association Name="FK__LichTrinh__ID_To__1920BF5C">
           <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
           <End Role="LichTrinh" Type="Self.LichTrinh" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +159,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhaiHoi__ID_Tour__164452B1">
+        <Association Name="FK__PhaiHoi__ID_Tour__1DE57479">
           <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
           <End Role="PhaiHoi" Type="Self.PhaiHoi" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +171,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tour__ID_LoaiTou__0CBAE877">
+        <Association Name="FK__Tour__ID_LoaiTou__145C0A3F">
           <End Role="LoaiTour" Type="Self.LoaiTour" Multiplicity="0..1" />
           <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <ReferentialConstraint>
@@ -177,35 +185,36 @@
         </Association>
         <EntityContainer Name="DulichModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="chitietDH" EntityType="Self.chitietDH" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CamNangDuLich" EntityType="Self.CamNangDuLich" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietDatVe" EntityType="Self.ChiTietDatVe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatVe" EntityType="Self.DatVe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LichTrinh" EntityType="Self.LichTrinh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiTour" EntityType="Self.LoaiTour" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhaiHoi" EntityType="Self.PhaiHoi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__chitietDH__ID_Do__20C1E124" Association="Self.FK__chitietDH__ID_Do__20C1E124">
-            <End Role="DonHang" EntitySet="DonHang" />
-            <End Role="chitietDH" EntitySet="chitietDH" />
+          <AssociationSet Name="FK__ChiTietDa__ID_Da__286302EC" Association="Self.FK__ChiTietDa__ID_Da__286302EC">
+            <End Role="DatVe" EntitySet="DatVe" />
+            <End Role="ChiTietDatVe" EntitySet="ChiTietDatVe" />
           </AssociationSet>
-          <AssociationSet Name="FK__chitietDH__ID_To__21B6055D" Association="Self.FK__chitietDH__ID_To__21B6055D">
+          <AssociationSet Name="FK__ChiTietDa__ID_To__276EDEB3" Association="Self.FK__ChiTietDa__ID_To__276EDEB3">
             <End Role="Tour" EntitySet="Tour" />
-            <End Role="chitietDH" EntitySet="chitietDH" />
+            <End Role="ChiTietDatVe" EntitySet="ChiTietDatVe" />
           </AssociationSet>
-          <AssociationSet Name="FK__DonHang__ID_KH__1ED998B2" Association="Self.FK__DonHang__ID_KH__1ED998B2">
+          <AssociationSet Name="FK__DatVe__ID_KH__22AA2996" Association="Self.FK__DatVe__ID_KH__22AA2996">
             <End Role="KhachHang" EntitySet="KhachHang" />
-            <End Role="DonHang" EntitySet="DonHang" />
+            <End Role="DatVe" EntitySet="DatVe" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichTrinh__ID_To__117F9D94" Association="Self.FK__LichTrinh__ID_To__117F9D94">
+          <AssociationSet Name="FK__LichTrinh__ID_To__1920BF5C" Association="Self.FK__LichTrinh__ID_To__1920BF5C">
             <End Role="Tour" EntitySet="Tour" />
             <End Role="LichTrinh" EntitySet="LichTrinh" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhaiHoi__ID_Tour__164452B1" Association="Self.FK__PhaiHoi__ID_Tour__164452B1">
+          <AssociationSet Name="FK__PhaiHoi__ID_Tour__1DE57479" Association="Self.FK__PhaiHoi__ID_Tour__1DE57479">
             <End Role="Tour" EntitySet="Tour" />
             <End Role="PhaiHoi" EntitySet="PhaiHoi" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tour__ID_LoaiTou__0CBAE877" Association="Self.FK__Tour__ID_LoaiTou__0CBAE877">
+          <AssociationSet Name="FK__Tour__ID_LoaiTou__145C0A3F" Association="Self.FK__Tour__ID_LoaiTou__145C0A3F">
             <End Role="LoaiTour" EntitySet="LoaiTour" />
             <End Role="Tour" EntitySet="Tour" />
           </AssociationSet>
@@ -224,28 +233,37 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="chitietDH">
+        <EntityType Name="CamNangDuLich">
           <Key>
-            <PropertyRef Name="ID_DonHang" />
-            <PropertyRef Name="ID_Tour" />
+            <PropertyRef Name="ID_CNDL" />
           </Key>
-          <Property Name="ID_DonHang" Type="Int32" Nullable="false" />
-          <Property Name="ID_Tour" Type="Int32" Nullable="false" />
-          <Property Name="Soluong" Type="Int32" />
-          <Property Name="DonGia" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="DonHang" Relationship="Self.FK__chitietDH__ID_Do__20C1E124" FromRole="chitietDH" ToRole="DonHang" />
-          <NavigationProperty Name="Tour" Relationship="Self.FK__chitietDH__ID_To__21B6055D" FromRole="chitietDH" ToRole="Tour" />
+          <Property Name="ID_CNDL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenCNDL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ImageCNDL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDungCNDL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="DonHang">
+        <EntityType Name="ChiTietDatVe">
           <Key>
-            <PropertyRef Name="ID_DonHang" />
+            <PropertyRef Name="ID_CT" />
           </Key>
-          <Property Name="ID_DonHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TinhTrang" Type="Int32" />
-          <Property Name="NgayDat" Type="DateTime" Precision="3" />
+          <Property Name="ID_CT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Tour" Type="Int32" />
+          <Property Name="ID_DatVe" Type="Int32" />
+          <Property Name="SoLuongVe" Type="Int32" />
+          <Property Name="ThanhTien" Type="Double" />
+          <NavigationProperty Name="DatVe" Relationship="Self.FK__ChiTietDa__ID_Da__286302EC" FromRole="ChiTietDatVe" ToRole="DatVe" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__ChiTietDa__ID_To__276EDEB3" FromRole="ChiTietDatVe" ToRole="Tour" />
+        </EntityType>
+        <EntityType Name="DatVe">
+          <Key>
+            <PropertyRef Name="ID_DatVe" />
+          </Key>
+          <Property Name="ID_DatVe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_KH" Type="Int32" />
-          <NavigationProperty Name="chitietDHs" Relationship="Self.FK__chitietDH__ID_Do__20C1E124" FromRole="DonHang" ToRole="chitietDH" />
-          <NavigationProperty Name="KhachHang" Relationship="Self.FK__DonHang__ID_KH__1ED998B2" FromRole="DonHang" ToRole="KhachHang" />
+          <Property Name="NgayDat" Type="DateTime" Precision="3" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChiTietDatVes" Relationship="Self.FK__ChiTietDa__ID_Da__286302EC" FromRole="DatVe" ToRole="ChiTietDatVe" />
+          <NavigationProperty Name="KhachHang" Relationship="Self.FK__DatVe__ID_KH__22AA2996" FromRole="DatVe" ToRole="KhachHang" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -259,7 +277,7 @@
           <Property Name="GioiTinh" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="DonHangs" Relationship="Self.FK__DonHang__ID_KH__1ED998B2" FromRole="KhachHang" ToRole="DonHang" />
+          <NavigationProperty Name="DatVes" Relationship="Self.FK__DatVe__ID_KH__22AA2996" FromRole="KhachHang" ToRole="DatVe" />
         </EntityType>
         <EntityType Name="LichTrinh">
           <Key>
@@ -271,7 +289,7 @@
           <Property Name="TenLT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnhLT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Tour" Relationship="Self.FK__LichTrinh__ID_To__117F9D94" FromRole="LichTrinh" ToRole="Tour" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__LichTrinh__ID_To__1920BF5C" FromRole="LichTrinh" ToRole="Tour" />
         </EntityType>
         <EntityType Name="LoaiTour">
           <Key>
@@ -279,7 +297,7 @@
           </Key>
           <Property Name="ID_LoaiTour" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenLoaiTour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Tours" Relationship="Self.FK__Tour__ID_LoaiTou__0CBAE877" FromRole="LoaiTour" ToRole="Tour" />
+          <NavigationProperty Name="Tours" Relationship="Self.FK__Tour__ID_LoaiTou__145C0A3F" FromRole="LoaiTour" ToRole="Tour" />
         </EntityType>
         <EntityType Name="PhaiHoi">
           <Key>
@@ -292,7 +310,7 @@
           <Property Name="TieudePH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NoidungPH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NgayGui" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Tour" Relationship="Self.FK__PhaiHoi__ID_Tour__164452B1" FromRole="PhaiHoi" ToRole="Tour" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__PhaiHoi__ID_Tour__1DE57479" FromRole="PhaiHoi" ToRole="Tour" />
         </EntityType>
         <EntityType Name="TinTuc">
           <Key>
@@ -316,52 +334,51 @@
           <Property Name="PhuongTien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gia" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="NgayKhoiHanh" Type="DateTime" Precision="0" />
-          <Property Name="NgayKetThuc" Type="DateTime" Precision="0" />
-          <Property Name="NgayTapTrung" Type="DateTime" Precision="0" />
+          <Property Name="ThoiGian" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DiaChiTapTrung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ID_LoaiTour" Type="Int32" />
-          <NavigationProperty Name="chitietDHs" Relationship="Self.FK__chitietDH__ID_To__21B6055D" FromRole="Tour" ToRole="chitietDH" />
-          <NavigationProperty Name="LichTrinhs" Relationship="Self.FK__LichTrinh__ID_To__117F9D94" FromRole="Tour" ToRole="LichTrinh" />
-          <NavigationProperty Name="LoaiTour" Relationship="Self.FK__Tour__ID_LoaiTou__0CBAE877" FromRole="Tour" ToRole="LoaiTour" />
-          <NavigationProperty Name="PhaiHois" Relationship="Self.FK__PhaiHoi__ID_Tour__164452B1" FromRole="Tour" ToRole="PhaiHoi" />
+          <NavigationProperty Name="ChiTietDatVes" Relationship="Self.FK__ChiTietDa__ID_To__276EDEB3" FromRole="Tour" ToRole="ChiTietDatVe" />
+          <NavigationProperty Name="LichTrinhs" Relationship="Self.FK__LichTrinh__ID_To__1920BF5C" FromRole="Tour" ToRole="LichTrinh" />
+          <NavigationProperty Name="LoaiTour" Relationship="Self.FK__Tour__ID_LoaiTou__145C0A3F" FromRole="Tour" ToRole="LoaiTour" />
+          <NavigationProperty Name="PhaiHois" Relationship="Self.FK__PhaiHoi__ID_Tour__1DE57479" FromRole="Tour" ToRole="PhaiHoi" />
         </EntityType>
-        <Association Name="FK__chitietDH__ID_Do__20C1E124">
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
-          <End Role="chitietDH" Type="Self.chitietDH" Multiplicity="*" />
+        <Association Name="FK__ChiTietDa__ID_Da__286302EC">
+          <End Role="DatVe" Type="Self.DatVe" Multiplicity="0..1" />
+          <End Role="ChiTietDatVe" Type="Self.ChiTietDatVe" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DonHang">
-              <PropertyRef Name="ID_DonHang" />
+            <Principal Role="DatVe">
+              <PropertyRef Name="ID_DatVe" />
             </Principal>
-            <Dependent Role="chitietDH">
-              <PropertyRef Name="ID_DonHang" />
+            <Dependent Role="ChiTietDatVe">
+              <PropertyRef Name="ID_DatVe" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__chitietDH__ID_To__21B6055D">
-          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-          <End Role="chitietDH" Type="Self.chitietDH" Multiplicity="*" />
+        <Association Name="FK__ChiTietDa__ID_To__276EDEB3">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="ChiTietDatVe" Type="Self.ChiTietDatVe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tour">
               <PropertyRef Name="ID_Tour" />
             </Principal>
-            <Dependent Role="chitietDH">
+            <Dependent Role="ChiTietDatVe">
               <PropertyRef Name="ID_Tour" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DonHang__ID_KH__1ED998B2">
+        <Association Name="FK__DatVe__ID_KH__22AA2996">
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <End Role="DatVe" Type="Self.DatVe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KhachHang">
               <PropertyRef Name="ID_KH" />
             </Principal>
-            <Dependent Role="DonHang">
+            <Dependent Role="DatVe">
               <PropertyRef Name="ID_KH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichTrinh__ID_To__117F9D94">
+        <Association Name="FK__LichTrinh__ID_To__1920BF5C">
           <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
           <End Role="LichTrinh" Type="Self.LichTrinh" Multiplicity="*" />
           <ReferentialConstraint>
@@ -373,7 +390,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tour__ID_LoaiTou__0CBAE877">
+        <Association Name="FK__Tour__ID_LoaiTou__145C0A3F">
           <End Role="LoaiTour" Type="Self.LoaiTour" Multiplicity="0..1" />
           <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <ReferentialConstraint>
@@ -385,7 +402,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhaiHoi__ID_Tour__164452B1">
+        <Association Name="FK__PhaiHoi__ID_Tour__1DE57479">
           <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
           <End Role="PhaiHoi" Type="Self.PhaiHoi" Multiplicity="*" />
           <ReferentialConstraint>
@@ -399,35 +416,36 @@
         </Association>
         <EntityContainer Name="DulichEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
-          <EntitySet Name="chitietDHs" EntityType="Self.chitietDH" />
-          <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
+          <EntitySet Name="CamNangDuLiches" EntityType="Self.CamNangDuLich" />
+          <EntitySet Name="ChiTietDatVes" EntityType="Self.ChiTietDatVe" />
+          <EntitySet Name="DatVes" EntityType="Self.DatVe" />
           <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
           <EntitySet Name="LichTrinhs" EntityType="Self.LichTrinh" />
           <EntitySet Name="LoaiTours" EntityType="Self.LoaiTour" />
           <EntitySet Name="PhaiHois" EntityType="Self.PhaiHoi" />
           <EntitySet Name="TinTucs" EntityType="Self.TinTuc" />
           <EntitySet Name="Tours" EntityType="Self.Tour" />
-          <AssociationSet Name="FK__chitietDH__ID_Do__20C1E124" Association="Self.FK__chitietDH__ID_Do__20C1E124">
-            <End Role="DonHang" EntitySet="DonHangs" />
-            <End Role="chitietDH" EntitySet="chitietDHs" />
+          <AssociationSet Name="FK__ChiTietDa__ID_Da__286302EC" Association="Self.FK__ChiTietDa__ID_Da__286302EC">
+            <End Role="DatVe" EntitySet="DatVes" />
+            <End Role="ChiTietDatVe" EntitySet="ChiTietDatVes" />
           </AssociationSet>
-          <AssociationSet Name="FK__chitietDH__ID_To__21B6055D" Association="Self.FK__chitietDH__ID_To__21B6055D">
+          <AssociationSet Name="FK__ChiTietDa__ID_To__276EDEB3" Association="Self.FK__ChiTietDa__ID_To__276EDEB3">
             <End Role="Tour" EntitySet="Tours" />
-            <End Role="chitietDH" EntitySet="chitietDHs" />
+            <End Role="ChiTietDatVe" EntitySet="ChiTietDatVes" />
           </AssociationSet>
-          <AssociationSet Name="FK__DonHang__ID_KH__1ED998B2" Association="Self.FK__DonHang__ID_KH__1ED998B2">
+          <AssociationSet Name="FK__DatVe__ID_KH__22AA2996" Association="Self.FK__DatVe__ID_KH__22AA2996">
             <End Role="KhachHang" EntitySet="KhachHangs" />
-            <End Role="DonHang" EntitySet="DonHangs" />
+            <End Role="DatVe" EntitySet="DatVes" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichTrinh__ID_To__117F9D94" Association="Self.FK__LichTrinh__ID_To__117F9D94">
+          <AssociationSet Name="FK__LichTrinh__ID_To__1920BF5C" Association="Self.FK__LichTrinh__ID_To__1920BF5C">
             <End Role="Tour" EntitySet="Tours" />
             <End Role="LichTrinh" EntitySet="LichTrinhs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tour__ID_LoaiTou__0CBAE877" Association="Self.FK__Tour__ID_LoaiTou__0CBAE877">
+          <AssociationSet Name="FK__Tour__ID_LoaiTou__145C0A3F" Association="Self.FK__Tour__ID_LoaiTou__145C0A3F">
             <End Role="LoaiTour" EntitySet="LoaiTours" />
             <End Role="Tour" EntitySet="Tours" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhaiHoi__ID_Tour__164452B1" Association="Self.FK__PhaiHoi__ID_Tour__164452B1">
+          <AssociationSet Name="FK__PhaiHoi__ID_Tour__1DE57479" Association="Self.FK__PhaiHoi__ID_Tour__1DE57479">
             <End Role="Tour" EntitySet="Tours" />
             <End Role="PhaiHoi" EntitySet="PhaiHois" />
           </AssociationSet>
@@ -448,23 +466,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="chitietDHs">
-            <EntityTypeMapping TypeName="DulichModel.chitietDH">
-              <MappingFragment StoreEntitySet="chitietDH">
-                <ScalarProperty Name="ID_DonHang" ColumnName="ID_DonHang" />
-                <ScalarProperty Name="ID_Tour" ColumnName="ID_Tour" />
-                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
-                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <EntitySetMapping Name="CamNangDuLiches">
+            <EntityTypeMapping TypeName="DulichModel.CamNangDuLich">
+              <MappingFragment StoreEntitySet="CamNangDuLich">
+                <ScalarProperty Name="ID_CNDL" ColumnName="ID_CNDL" />
+                <ScalarProperty Name="TenCNDL" ColumnName="TenCNDL" />
+                <ScalarProperty Name="ImageCNDL" ColumnName="ImageCNDL" />
+                <ScalarProperty Name="NoiDungCNDL" ColumnName="NoiDungCNDL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DonHangs">
-            <EntityTypeMapping TypeName="DulichModel.DonHang">
-              <MappingFragment StoreEntitySet="DonHang">
-                <ScalarProperty Name="ID_DonHang" ColumnName="ID_DonHang" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
+          <EntitySetMapping Name="ChiTietDatVes">
+            <EntityTypeMapping TypeName="DulichModel.ChiTietDatVe">
+              <MappingFragment StoreEntitySet="ChiTietDatVe">
+                <ScalarProperty Name="ID_CT" ColumnName="ID_CT" />
+                <ScalarProperty Name="ID_Tour" ColumnName="ID_Tour" />
+                <ScalarProperty Name="ID_DatVe" ColumnName="ID_DatVe" />
+                <ScalarProperty Name="SoLuongVe" ColumnName="SoLuongVe" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatVes">
+            <EntityTypeMapping TypeName="DulichModel.DatVe">
+              <MappingFragment StoreEntitySet="DatVe">
+                <ScalarProperty Name="ID_DatVe" ColumnName="ID_DatVe" />
                 <ScalarProperty Name="ID_KH" ColumnName="ID_KH" />
+                <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -537,8 +566,7 @@
                 <ScalarProperty Name="PhuongTien" ColumnName="PhuongTien" />
                 <ScalarProperty Name="Gia" ColumnName="Gia" />
                 <ScalarProperty Name="NgayKhoiHanh" ColumnName="NgayKhoiHanh" />
-                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
-                <ScalarProperty Name="NgayTapTrung" ColumnName="NgayTapTrung" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
                 <ScalarProperty Name="DiaChiTapTrung" ColumnName="DiaChiTapTrung" />
                 <ScalarProperty Name="ID_LoaiTour" ColumnName="ID_LoaiTour" />
               </MappingFragment>

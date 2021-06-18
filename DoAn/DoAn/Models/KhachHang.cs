@@ -18,42 +18,44 @@ namespace DoAn.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KhachHang()
         {
-            this.DonHangs = new HashSet<DonHang>();
+            this.DatVes = new HashSet<DatVe>();
         }
-    
+        [Required(ErrorMessage = "Nhập Mã hiển thị.")]
+        [Display(Name = "Mã hiển thị:")]
         public int ID_KH { get; set; }
 
-        [Display(Name = "Họ Tên")]
-        [Required(ErrorMessage = "Vui lòng nhập họ tên")]
+        [Required(ErrorMessage = "Nhập Họ tên.")]
+        [Display(Name = "Họ tên:")]
         public string HoTenKH { get; set; }
 
-        [MaxLength(10)]
-        [MinLength(10)]
-        [Display(Name = "Số điện thoại")]
-        [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
+        [Required(ErrorMessage = "Nhập Số điện thoại.")]
+        [Display(Name = "Số điện thoại:")]
         public string SDT { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập Email")]
+        [Required(ErrorMessage = "Nhập Email.")]
+        [Display(Name = "Email:")]
         public string Email { get; set; }
 
-        [Display(Name = "Ngày sinh")]
-        [Required(ErrorMessage = "Vui lòng nhập ngày sinh")]
+        [Display(Name = "Ngày sinh:")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public Nullable<System.DateTime> NgaySinh { get; set; }
 
-        [Display(Name = "Giới tính")]
-        [Required(ErrorMessage = "Vui lòng nhập giới tính")]
+        [Required(ErrorMessage = "Nhập Giới tính.")]
+        [Display(Name = "Giới tính:")]
         public string GioiTinh { get; set; }
 
-        [Display(Name = "Địa chỉ")]
-        [Required(ErrorMessage = "Vui lòng nhập địa chỉ")]
+        [Required(ErrorMessage = "Nhập Địa chỉ.")]
+        [Display(Name = "Địa chỉ:")]
         public string DiaChi { get; set; }
 
-        [Display(Name = "Mật khẩu")]
-        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
+        [Required(ErrorMessage = "Nhập Password.")]
+        [Display(Name = "Password:")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-    
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHang> DonHangs { get; set; }
+        public virtual ICollection<DatVe> DatVes { get; set; }
     }
 }

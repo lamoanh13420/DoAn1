@@ -12,21 +12,21 @@ namespace DoAn.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DonHang
+    public partial class DatVe
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DonHang()
+        public DatVe()
         {
-            this.chitietDHs = new HashSet<chitietDH>();
+            this.ChiTietDatVes = new HashSet<ChiTietDatVe>();
         }
     
-        public int ID_DonHang { get; set; }
-        public Nullable<int> TinhTrang { get; set; }
-        public Nullable<System.DateTime> NgayDat { get; set; }
+        public int ID_DatVe { get; set; }
         public Nullable<int> ID_KH { get; set; }
+        public Nullable<System.DateTime> NgayDat { get; set; }
+        public string GhiChu { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<chitietDH> chitietDHs { get; set; }
+        public virtual ICollection<ChiTietDatVe> ChiTietDatVes { get; set; }
         public virtual KhachHang KhachHang { get; set; }
     }
 }
