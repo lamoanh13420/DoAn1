@@ -5,9 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thông Tin Tour</h2>
+<h2 style="text-align:center">Thông Tin Tour</h2>
+<hr />
 <table style="text-align:center">
-    <caption>@Model.TenTour</caption>
+    <caption style="text-align:center">@Model.TenTour</caption>
     <tr>
         <th rowspan="20"><img src="@Url.Content(Model.HinhAnh)" style="width:50%; height:auto" /></th>
         <td> <i class='fas fa-map-marker-alt' style='font-size:20px; color:forestgreen'> </i>&ensp; Địa Điểm: @Model.TenTour</td>
@@ -32,7 +33,7 @@
     </tr>
     <tr>
         <td>
-            <button class="btn btn-danger"><a style="color:white" href="/TravelShoppingCart/AddtoCart/@Model.ID_Tour">Đặt Vé</a></button>
+            <button class="btn btn-danger"><a href="/TravelShoppingCart/AddtoCart/@Model.ID_Tour"  style="color:white">Đặt Vé</a></button>
         </td>
     </tr>
 </table>

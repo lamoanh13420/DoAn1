@@ -47,6 +47,7 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
+                                
                                 <a class="nav-item nav-link" href="/Home/Index">TRANG CHỦ</a>
                                 <a class="nav-item nav-link" href="/Home/Index">TOUR DU LỊCH</a>
                                 <a class="nav-item nav-link" href="/XemTinTuc/Index">TIN TỨC</a>
@@ -59,19 +60,12 @@
                     </nav>
                 </div>
                 <div class="dangkydangnhap">
-                    <span>
-                        <a href="~/TravelShoppingCart/ShowToCart">
-                            <img src="~/Images/cart0.jpg" style="height:40px;width:40px;padding-top:2px; padding-left:5px; padding-bottom:10px" />
-                        </a>
-                        @Html.Action("BagCart", "TravelShoppingCart")
-                    </span>
                     
+
                     <span>
                         @if (Session["HoTenKH"] != null)
                         {
-                            <i style="color:azure; margin-top:15px">@Session["HoTenKH"]!!</i>
-
-                            @*<i style="color:azure; margin-top:15px">@Html.ActionLink("Thông tin cá nhân!", "Details", "ThanhVien", new { id = Model.ID_KH })</i>*@
+                            <a style="color:azure; margin-top:15px">@Session["HoTenKH"]!!</a>
                             <i class="fa fa-sign-out" aria-hidden="true"></i> @Html.ActionLink("Đăng Xuất", "DangXuat", "ThanhVien")
                         }
                         else
